@@ -10,20 +10,20 @@ namespace SistemaDeCadastroJogos.Repositorios
 
     public class JogoRepositorio : IJogoRepositorio
     {
-        private readonly SistemaTarefasDBContex _dbContext;
-        public JogoRepositorio (SistemaTarefasDBContex sistemaTarefasDBContex)
+        private readonly SistemaJogosDBContex _dbContext;
+        public JogoRepositorio (SistemaJogosDBContex sistemaTarefasDBContex)
         {
             _dbContext = sistemaTarefasDBContex;
         }
 
         public async Task<JogoModel> BuscarPorId(int id)
         {
-            return await _dbContext.Jogos.FirstOrDefaultAsync(x => x.IdJogo == id);
+            return await _dbContext.Jogos.Include(x => x.GeneroJogo).FirstOrDefaultAsync(x => x.IdJogo == id);
         }
 
         public async Task<List<JogoModel>> BuscarTodosJogos()
         {
-            return await _dbContext.Jogos.ToListAsync();
+            return await _dbContext.Jogos.Include(x => x.GeneroJogo).ToListAsync();
         }
         public async Task<JogoModel> Adicionar(JogoModel jogo)
         {
@@ -45,7 +45,7 @@ namespace SistemaDeCadastroJogos.Repositorios
             jogoPorId.NomeJogo = jogo.NomeJogo;
             jogoPorId.DescricaoJogo = jogo.DescricaoJogo;
             jogoPorId.DataLancamentoJogo = jogo.DataLancamentoJogo;           
-            jogoPorId.GeneroJogo = jogo.GeneroJogo;
+            jogoPorId.GeneroJogoId = jogo.GeneroJogoId;
             jogoPorId.DesenvJogo = jogo.DesenvJogo;
 
 

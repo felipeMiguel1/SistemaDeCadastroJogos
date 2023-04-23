@@ -5,7 +5,7 @@
 namespace SistemaDeCadastroJogos.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDB : Migration
+    public partial class DBinicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,23 +32,33 @@ namespace SistemaDeCadastroJogos.Migrations
                     NomeJogo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     DescricaoJogo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     DataLancamentoJogo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    GeneroJogo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    DesenvJogo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    DesenvJogo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    GeneroJogoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Jogos", x => x.IdJogo);
+                    table.ForeignKey(
+                        name: "FK_Jogos_Generos_GeneroJogoId",
+                        column: x => x.GeneroJogoId,
+                        principalTable: "Generos",
+                        principalColumn: "IdGenero");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Jogos_GeneroJogoId",
+                table: "Jogos",
+                column: "GeneroJogoId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Generos");
+                name: "Jogos");
 
             migrationBuilder.DropTable(
-                name: "Jogos");
+                name: "Generos");
         }
     }
 }

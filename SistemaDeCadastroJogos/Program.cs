@@ -18,10 +18,12 @@ namespace SistemaDeCadastroJogos
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddEntityFrameworkSqlServer().AddDbContext<SistemaTarefasDBContex>(
+            builder.Services.AddEntityFrameworkSqlServer().AddDbContext<SistemaJogosDBContex>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
 
             builder.Services.AddScoped<IJogoRepositorio, JogoRepositorio>();
+            builder.Services.AddScoped<IGeneroRepositorio, GeneroRepositorio>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

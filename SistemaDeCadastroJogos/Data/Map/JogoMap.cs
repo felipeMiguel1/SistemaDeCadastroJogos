@@ -12,8 +12,11 @@ namespace SistemaDeCadastroJogos.Data.Map
             builder.Property(x => x.NomeJogo).IsRequired().HasMaxLength(100);
             builder.Property(x => x.DescricaoJogo).IsRequired().HasMaxLength(100);
             builder.Property(x => x.DataLancamentoJogo).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.GeneroJogo).IsRequired().HasMaxLength(100);
             builder.Property(x => x.DesenvJogo).IsRequired().HasMaxLength(100);
+
+            builder.Property(x => x.GeneroJogoId);
+            builder.HasOne(x => x.GeneroJogo);
+
 
         }
     }

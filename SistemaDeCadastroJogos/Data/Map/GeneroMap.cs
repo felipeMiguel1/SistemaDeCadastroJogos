@@ -10,9 +10,9 @@ namespace SistemaDeCadastroJogos.Data.Map
         {
             builder.HasKey(x => x.IdGenero);
             builder.Property(x => x.NomeGenero).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.JogoId);
+           
 
-            builder.HasOne(x => x.Jogo);
+           
 
         }
     }

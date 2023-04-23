@@ -4,10 +4,10 @@ using SistemaDeCadastroJogos.Model;
 
 namespace SistemaDeCadastroJogos.Data
 {
-    public class SistemaTarefasDBContex : DbContext
+    public class SistemaJogosDBContex : DbContext
     {
 
-        public SistemaTarefasDBContex(DbContextOptions<SistemaTarefasDBContex> options): base(options)
+        public SistemaJogosDBContex(DbContextOptions<SistemaJogosDBContex> options): base(options)
         {
         
         
